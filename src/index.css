@@ -4,32 +4,6 @@
 
 @layer base {
   html {
-    font-family: Inter, system-ui, sans-serif;
-  }
-  
-  body {
-    @apply bg-snow text-davys_gray-500;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
-  }
-}
-
-@layer components {
-  .btn {
-    @apply px-4 py-2 rounded-md transition-colors;
-  }
-
-  .btn-primary {
-    @apply bg-rojo text-snow hover:bg-rojo-600;
-  }
-
-  .btn-secondary {
-    @apply bg-english_violet text-snow hover:bg-english_violet-600;
-  }
-
-  .btn-outline {
-    @apply border-2 border-rojo text-rojo hover:bg-rojo hover:text-snow;
+    @apply antialiased;
   }
 }

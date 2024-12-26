@@ -1,86 +1,39 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { FaGamepad, FaCode, FaBlog, FaUserAstronaut } from 'react-icons/fa';
+import { MdContactMail } from 'react-icons/md';
+import ThemeToggle from '../ThemeToggle';
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/portfolio', label: 'Portfolio' },
-    { path: '/blog', label: 'Blog' },
-    { path: '/cv', label: 'CV' },
-    { path: '/contact', label: 'Contact' }
-  ];
-
   return (
-    <nav className="bg-snow-500 shadow-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-card backdrop-blur-md border-b border-aurora/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-2xl font-bold text-rojo">
-              Portfolio
+        <div className="flex justify-between items-center h-16">
+          <Link to="/" className="group flex items-center gap-2">
+            <FaGamepad className="text-2xl text-rojo group-hover:text-aurora transition-colors" />
+            <span className="font-serif text-xl font-bold bg-gradient-to-r from-rojo to-aurora bg-clip-text text-transparent">
+              René Rieck
+            </span>
+          </Link>
+          
+          <div className="hidden md:flex items-center space-x-8">
+            <Link to="/portfolio" className="nav-link flex items-center gap-2">
+              <FaCode className="text-lg" />
+              <span>Portfolio</span>
             </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden sm:flex sm:items-center">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="px-3 py-2 rounded-md text-davys_gray-500 hover:text-rojo hover:bg-snow-400 transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="sm:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-davys_gray-500 hover:text-rojo hover:bg-snow-400"
-            >
-              <span className="sr-only">Open main menu</span>
-              {/* Hamburger icon */}
-              <svg
-                className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              {/* Close icon */}
-              <svg
-                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="block px-3 py-2 rounded-md text-davys_gray-500 hover:text-rojo hover:bg-snow-400 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
+            <Link to="/blog" className="nav-link flex items-center gap-2">
+              <FaBlog className="text-lg" />
+              <span>Blog</span>
             </Link>
-          ))}
+            <Link to="/cv" className="nav-link flex items-center gap-2">
+              <FaUserAstronaut className="text-lg" />
+              <span>CV</span>
+            </Link>
+            <Link to="/contact" className="nav-link flex items-center gap-2">
+              <MdContactMail className="text-lg" />
+              <span>Contact</span>
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </nav>

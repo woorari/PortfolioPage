@@ -1,42 +1,119 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer base {
+  html {
+    @apply antialiased;
   }
-  to {
-    transform: rotate(360deg);
+
+  body {
+    @apply bg-gradient-main text-space-700 relative
+           before:fixed before:inset-0 before:bg-noise before:opacity-[0.015] before:pointer-events-none
+           after:fixed after:inset-0 after:bg-mesh-glow after:opacity-50 after:pointer-events-none
+           after:animate-glow;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative;
 }
 
 .card {
-  padding: 2em;
+  @apply bg-gradient-card rounded-lg p-8 
+         backdrop-blur-sm shadow-lg border border-cosmic-300/10 
+         dark:border-aurora-300/20 hover:shadow-xl transition-all duration-300
+         hover:scale-[1.02] dark:hover:border-aurora-300/40
+         hover:border-cosmic/20 relative overflow-hidden
+         before:absolute before:inset-0 before:bg-noise before:opacity-[0.015]
+         dark:shadow-aurora-700/5 dark:hover:shadow-aurora-700/10;
 }
 
-.read-the-docs {
-  color: #888;
+.card-white {
+  @apply bg-space-300/80 rounded-lg p-4 backdrop-blur-sm
+         shadow-md hover:shadow-lg transition-all duration-300
+         border border-cosmic-300/10 dark:border-aurora-300/20
+         hover:border-rojo/20 dark:hover:border-aurora-300/40
+         hover:scale-[1.01] relative overflow-hidden
+         before:absolute before:inset-0 before:bg-noise before:opacity-[0.015]
+         dark:shadow-aurora-700/5;
+}
+
+.heading-1 {
+  @apply text-5xl font-bold mb-4 relative
+         bg-gradient-to-r from-rojo via-cosmic to-rojo bg-[length:200%_auto]
+         dark:from-aurora dark:via-cosmic dark:to-aurora
+         bg-clip-text text-transparent
+         animate-gradient
+         drop-shadow-sm dark:drop-shadow-[0_0_15px_rgba(0,245,212,0.2)];
+}
+
+.heading-2 {
+  @apply text-2xl font-semibold text-aurora mb-6
+         relative after:content-[''] after:absolute after:-bottom-2 after:left-0 
+         after:w-24 after:h-1 after:bg-gradient-to-r after:from-rojo after:to-cosmic
+         dark:after:from-aurora dark:after:to-cosmic
+         after:rounded-full after:animate-pulse
+         dark:drop-shadow-[0_0_10px_rgba(0,245,212,0.2)];
+}
+
+.text-muted {
+  @apply text-aurora/90 tracking-wide;
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-2 rounded-md transition-all duration-300 font-medium;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-rojo text-white 
+           hover:from-rojo-400 hover:to-rojo active:from-rojo-600 active:to-rojo-400
+           disabled:from-rojo-800 disabled:to-rojo-800
+           shadow-md hover:shadow-xl hover:-translate-y-0.5
+           relative overflow-hidden
+           before:absolute before:inset-0 before:bg-noise before:opacity-[0.02]
+           dark:shadow-aurora-700/20;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-cosmic text-white
+           hover:from-cosmic-300 hover:to-cosmic 
+           dark:bg-gradient-aurora dark:hover:from-aurora-300
+           shadow-md hover:shadow-xl hover:-translate-y-0.5
+           relative overflow-hidden
+           before:absolute before:inset-0 before:bg-noise before:opacity-[0.02]
+           dark:shadow-aurora-700/20;
+  }
+
+  .btn-outline {
+    @apply border-2 border-rojo text-rojo hover:bg-gradient-rojo
+           hover:text-white shadow-sm hover:shadow-xl hover:-translate-y-0.5
+           dark:border-aurora dark:text-aurora dark:hover:bg-gradient-aurora
+           dark:shadow-aurora-700/10 dark:hover:shadow-aurora-700/20;
+  }
+
+  .nav-link {
+    @apply text-aurora hover:text-rojo
+           transition-all relative after:absolute after:bottom-0 after:left-0 
+           after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-rojo after:to-cosmic
+           dark:after:from-aurora dark:after:to-cosmic
+           after:transition-all hover:after:w-full
+           font-medium tracking-wide
+           dark:drop-shadow-[0_0_8px_rgba(0,245,212,0.2)];
+  }
+}
+
+@layer utilities {
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
 }

@@ -1,70 +1,49 @@
-import { Link } from 'react-router-dom';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { SiUnrealengine } from 'react-icons/si'
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const socialLinks = [
+    { icon: FaGithub, href: 'https://github.com/yourusername', label: 'GitHub' },
+    { icon: FaLinkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
+    { icon: FaTwitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
+    { icon: SiUnrealengine, href: 'https://dev.epicgames.com/community/profile/yourusername', label: 'Unreal Engine' },
+  ]
 
   return (
-    <footer className="bg-snow-500 border-t border-battleship_gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-davys_gray-500 mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/portfolio" className="text-davys_gray-400 hover:text-rojo">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-davys_gray-400 hover:text-rojo">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/cv" className="text-davys_gray-400 hover:text-rojo">
-                  CV
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-davys_gray-400 hover:text-rojo">
-                  Contact
-                </Link>
-              </li>
-            </ul>
+    <footer className="mt-16 border-t border-aurora/10 bg-gradient-card backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col items-center gap-8">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold bg-gradient-to-r from-rojo to-aurora bg-clip-text text-transparent">
+              René Rieck
+            </span>
           </div>
-
-          {/* Social Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-davys_gray-500 mb-4">Connect</h3>
-            <div className="flex space-x-4">
+          
+          <div className="flex gap-6">
+            {socialLinks.map((link) => (
               <a
-                href="https://github.com/yourusername"
+                key={link.label}
+                href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-davys_gray-400 hover:text-rojo"
+                className="text-aurora hover:text-rojo transition-colors"
+                aria-label={link.label}
               >
-                GitHub
+                <link.icon className="text-2xl" />
               </a>
-              <a
-                href="https://linkedin.com/in/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-davys_gray-400 hover:text-rojo"
-              >
-                LinkedIn
-              </a>
-            </div>
+            ))}
           </div>
 
-          {/* Copyright */}
-          <div>
-            <p className="text-davys_gray-400">
-              © {currentYear} Your Name. All rights reserved.
+          <div className="text-center">
+            <p className="text-aurora/80">
+              Game Industry Veteran & Product Lead
+            </p>
+            <p className="text-aurora/60 text-sm mt-2">
+              © {new Date().getFullYear()} René Rieck. All rights reserved.
             </p>
           </div>
         </div>
       </div>
     </footer>
-  );
+  )
 } 
