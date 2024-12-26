@@ -18,54 +18,50 @@
   }
 }
 
-.App {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative;
-}
-
-.card {
-  @apply bg-gradient-card rounded-lg p-8 
-         backdrop-blur-md shadow-lg border border-tertiary-300/10 
-         border-primary/10 hover:shadow-xl transition-all duration-300
-         hover:scale-[1.02] hover:border-primary/30
-         relative overflow-hidden
-         shadow-primary/5 hover:shadow-primary/10;
-}
-
-.card-white {
-  @apply bg-background-300/40 rounded-lg p-4 backdrop-blur-md
-         shadow-md hover:shadow-lg transition-all duration-300
-         border border-tertiary-300/10 border-primary/10
-         hover:border-primary/30
-         hover:scale-[1.01] relative overflow-hidden
-         shadow-primary/5;
-}
-
-.heading-1 {
-  @apply text-5xl font-bold mb-4 relative
-         bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto]
-         bg-clip-text text-transparent
-         animate-gradient
-         drop-shadow-sm drop-shadow-[0_0_15px_rgba(222,31,38,0.3)];
-}
-
-.heading-2 {
-  @apply text-2xl font-semibold text-primary mb-6
-         relative after:content-[''] after:absolute after:-bottom-2 after:left-0 
-         after:w-24 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary
-         after:rounded-full after:animate-pulse;
-}
-
-.text-muted {
-  @apply text-main/80 tracking-wide;
-}
-
 @layer components {
+  .App {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative;
+  }
+
+  .card {
+    @apply bg-gradient-card rounded-lg p-8 
+           backdrop-blur-md shadow-lg border border-primary/10 
+           hover:shadow-xl transition-all duration-300
+           hover:scale-[1.02] hover:border-primary/30
+           relative overflow-hidden
+           shadow-primary/5 hover:shadow-primary/10;
+  }
+
+  .card-white {
+    @apply bg-background-300/40 rounded-lg p-4 backdrop-blur-md
+           shadow-md hover:shadow-lg transition-all duration-300
+           border border-primary/10
+           hover:border-primary/30
+           hover:scale-[1.01] relative overflow-hidden
+           shadow-primary/5;
+  }
+
+  .heading-1 {
+    @apply text-5xl font-bold mb-4 relative
+           bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto]
+           bg-clip-text text-transparent
+           animate-gradient
+           drop-shadow-[0_0_15px_rgba(222,31,38,0.3)];
+  }
+
+  .heading-2 {
+    @apply text-2xl font-semibold text-primary mb-6
+           relative after:content-[''] after:absolute after:-bottom-2 after:left-0 
+           after:w-24 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary
+           after:rounded-full after:animate-pulse;
+  }
+
   .btn {
     @apply px-6 py-2 rounded-md transition-all duration-300 font-medium;
   }
 
   .btn-primary {
-    @apply bg-gradient-primary text-white/90 
+    @apply bg-gradient-primary text-main/90 
            hover:from-primary-400 hover:to-primary active:from-primary-600 active:to-primary-400
            disabled:from-primary-800 disabled:to-primary-800
            shadow-md hover:shadow-xl hover:-translate-y-0.5
@@ -75,7 +71,7 @@
   }
 
   .btn-secondary {
-    @apply bg-gradient-tertiary text-white/90
+    @apply bg-gradient-tertiary text-main/90
            hover:from-tertiary-300 hover:to-tertiary
            shadow-md hover:shadow-xl hover:-translate-y-0.5
            relative overflow-hidden
@@ -85,17 +81,30 @@
 
   .btn-outline {
     @apply border-2 border-primary/80 text-primary hover:bg-gradient-primary 
-           hover:text-white/90 shadow-sm hover:shadow-xl hover:-translate-y-0.5
+           hover:text-main/90 shadow-sm hover:shadow-xl hover:-translate-y-0.5
            shadow-primary/10 hover:shadow-primary/20
            backdrop-blur-sm;
   }
 
   .nav-link {
-    @apply text-main/80 hover:text-text
+    @apply text-main/80 hover:text-primary
            transition-all relative after:absolute after:bottom-0 after:left-0 
            after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary after:to-secondary
            after:transition-all hover:after:w-full
            font-medium tracking-wide;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-primary flex items-center gap-2 mb-4 
+           drop-shadow-[0_0_8px_rgba(222,31,38,0.2)];
+  }
+
+  p {
+    @apply text-main/80;
+  }
+
+  li {
+    @apply text-main/90;
   }
 }
 
@@ -107,25 +116,4 @@
   .animation-delay-1000 {
     animation-delay: 1000ms;
   }
-}
-
-h3 {
-  @apply text-xl font-semibold text-text flex items-center gap-2 mb-4 
-         drop-shadow-[0_0_8px_rgba(222,31,38,0.2)];
-}
-
-li {
-  @apply text-main/90;
-}
-
-.icon-highlight {
-  @apply text-primary/80;
-}
-
-.icon-value {
-  @apply text-tertiary/90;
-}
-
-p {
-  @apply text-main/80;
 }
