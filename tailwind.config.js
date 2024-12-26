@@ -4,46 +4,55 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        rojo: {
+        primary: {
           200: '#590D0F',
           400: '#B3191F',
           DEFAULT: '#DE1F26',
           600: '#E64C52',
           800: '#F2A6A8',
         },
-        aurora: {
-          300: '#34EDB5',
-          DEFAULT: '#00F5D4',
-          700: '#00D6B9',
+        secondary: {
+          300: '#B85EFF',
+          DEFAULT: '#9F2FFF',
+          700: '#7B00FF',
         },
-        cosmic: {
+        tertiary: {
           300: '#2D3FDE',
           DEFAULT: '#4C3AE3',
           700: '#6B35E8',
         },
-        space: {
+        background: {
           300: '#2B2F4B',
           DEFAULT: '#1F2342',
           700: '#151832',
         },
-        neon: {
-          purple: '#B026FF',
+        accent: {
+          red: '#FF2D2D',
+          purple: '#C042FF',
           blue: '#00F6FF',
-          pink: '#FF2D95',
         },
+        main: {
+          DEFAULT: '#FFFFFF',
+          secondary: '#CCCCCC',
+        },
+        text: '#DE1F26',
       },
       backgroundImage: {
-        'gradient-main': 'linear-gradient(to bottom right, #151832 0%, #1F2342 50%, #2B2F4B 100%)',
-        'gradient-card': 'linear-gradient(135deg, rgba(31,35,66,0.9) 0%, rgba(43,47,75,0.9) 100%)',
-        'gradient-cosmic': 'linear-gradient(135deg, #4C3AE3 0%, #2D3FDE 100%)',
-        'gradient-aurora': 'linear-gradient(135deg, #00F5D4 0%, #34EDB5 100%)',
-        'gradient-rojo': 'linear-gradient(135deg, #DE1F26 0%, #E64C52 100%)',
-        'mesh-glow': 'radial-gradient(at 40% 40%, rgba(0, 245, 212, 0.05) 0px, transparent 50%), radial-gradient(at 90% 10%, rgba(222, 31, 38, 0.05) 0px, transparent 50%)',
-        'noise': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+        'gradient-main': 'linear-gradient(to bottom right, var(--tw-colors-background-700) 0%, var(--tw-colors-background-DEFAULT) 50%, var(--tw-colors-background-300) 100%)',
+        'gradient-card': 'linear-gradient(135deg, rgba(21,24,50,0.95) 0%, rgba(31,35,66,0.95) 100%)',
+        'gradient-primary': 'linear-gradient(135deg, var(--tw-colors-primary-DEFAULT) 0%, var(--tw-colors-primary-600) 100%)',
+        'gradient-secondary': 'linear-gradient(135deg, var(--tw-colors-secondary-DEFAULT) 0%, var(--tw-colors-secondary-300) 100%)',
+        'gradient-tertiary': 'linear-gradient(135deg, var(--tw-colors-tertiary-DEFAULT) 0%, var(--tw-colors-tertiary-300) 100%)',
+        'mesh-glow': 'radial-gradient(at 40% 40%, rgba(222,31,38,0.08) 0px, transparent 50%), radial-gradient(at 90% 10%, rgba(159,47,255,0.05) 0px, transparent 50%)',
+        'mesh-pattern': `repeating-linear-gradient(
+                          -45deg,
+                          var(--tw-colors-background-300) 1px,
+                          transparent 2px,
+                          transparent 6px
+                        )`,
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',

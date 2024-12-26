@@ -10,11 +10,11 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="mt-16 border-t border-aurora/10 bg-gradient-card backdrop-blur-md">
+    <footer className="mt-16 border-t border-primary/10 bg-gradient-card backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col items-center gap-8">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-rojo to-aurora bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               René Rieck
             </span>
           </div>
@@ -26,7 +26,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-aurora hover:text-rojo transition-colors"
+                className="text-secondary hover:text-primary transition-colors"
                 aria-label={link.label}
               >
                 <link.icon className="text-2xl" />
@@ -35,10 +35,10 @@ export default function Footer() {
           </div>
 
           <div className="text-center">
-            <p className="text-aurora/80">
+            <p className="text-main/90">
               Game Industry Veteran & Product Lead
             </p>
-            <p className="text-aurora/60 text-sm mt-2">
+            <p className="text-main/60 text-sm mt-2">
               © {new Date().getFullYear()} René Rieck. All rights reserved.
             </p>
           </div>
