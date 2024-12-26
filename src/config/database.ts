@@ -4,7 +4,7 @@ import { Sequelize } from 'sequelize'
 const dbUrl = process.env.REPLIT_DB_URL || ''
 console.log('REPLIT_DB_URL exists:', !!dbUrl)
 
-const sequelize = new Sequelize({
+const sequelize = new Sequelize(dbUrl, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
@@ -15,18 +15,7 @@ const sequelize = new Sequelize({
   logging: console.log
 })
 
-if (dbUrl) {
-  try {
-    const url = new URL(dbUrl)
-    sequelize.config.host = url.hostname
-    sequelize.config.port = parseInt(url.port)
-    sequelize.config.database = url.pathname.split('/')[1]
-    sequelize.config.username = url.username
-    sequelize.config.password = url.password
-  } catch (error) {
-    console.error('Failed to parse database URL:', error)
-  }
-}
+
 
 export const testConnection = async () => {
   try {
