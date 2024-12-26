@@ -16,10 +16,17 @@ interface Game {
   genre: string
 }
 
-const games: Game[] = [
-  {
-    id: "g0001",
-    title: "Ragnarok Online",
+const [games, setGames] = useState<Game[]>([]);
+
+useEffect(() => {
+  fetch('http://localhost:3001/api/games')
+    .then(res => res.json())
+    .then(data => setGames(data))
+    .catch(err => console.error('Error fetching games:', err));
+}, []);
+
+// Placeholder games array for TypeScript
+const dummyGames: Game[] = [
     image: "/images/games/g0001/cover.png",
     screenshots: [
       "/images/games/g0001/screen1.png",
