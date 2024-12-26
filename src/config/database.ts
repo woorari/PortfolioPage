@@ -1,13 +1,11 @@
+
 import { Sequelize } from 'sequelize'
 
-// Debug-Ausgabe der Database URL (ohne sensible Daten)
 const dbUrl = process.env.REPLIT_DB_URL || ''
 console.log('REPLIT_DB_URL exists:', !!dbUrl)
 
-// Parse die URL für Sequelize
-const sequelize = new Sequelize(dbUrl, {
+const sequelize = new Sequelize({
   dialect: 'postgres',
-  protocol: 'postgres',
   dialectOptions: {
     ssl: {
       require: true,
@@ -16,6 +14,19 @@ const sequelize = new Sequelize(dbUrl, {
   },
   logging: console.log
 })
+
+if (dbUrl) {
+  try {
+    const url = new URL(dbUrl)
+    sequelize.config.host = url.hostname
+    sequelize.config.port = parseInt(url.port)
+    sequelize.config.database = url.pathname.split('/')[1]
+    sequelize.config.username = url.username
+    sequelize.config.password = url.password
+  } catch (error) {
+    console.error('Failed to parse database URL:', error)
+  }
+}
 
 export const testConnection = async () => {
   try {
@@ -26,4 +37,4 @@ export const testConnection = async () => {
   }
 }
 
-export default sequelize 
+export default sequelize
