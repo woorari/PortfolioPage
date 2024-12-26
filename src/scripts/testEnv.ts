@@ -1,49 +1,27 @@
-import { execSync } from 'child_process'
-import { ReplitClient } from '@replit/node-repl'
 
-// Liste aller Postgres-relevanten Variablen
+import { execSync } from 'child_process'
+
 const pgVars = [
   'DATABASE_URL',
   'PGDATABASE',
   'PGHOST',
   'PGPORT',
   'PGUSER',
-  'PGPASSWORD',
-  'REPLIT_DB_URL'
+  'PGPASSWORD'
 ]
 
 async function checkEnvironment() {
-  console.log('Checking Replit Environment:')
-  console.log('---------------------------')
+  console.log('Checking Database Environment Variables:')
+  console.log('-------------------------------------')
   
-  try {
-    // Versuche Replit Client zu initialisieren
-    const replit = new ReplitClient()
-    const replitEnv = await replit.getEnvironment()
-    
-    console.log('Replit Environment Variables:')
-    Object.entries(replitEnv).forEach(([key, value]) => {
-      if (key.includes('DB') || key.includes('PG')) {
-        console.log(`${key}: ${value ? '✓ (set)' : '✗ (not set)'}`)
-      }
-    })
-  } catch (error) {
-    console.error('Error accessing Replit environment:', error.message)
-  }
-
-  // Bestehende Checks...
-  console.log('\nProcess Environment Variables:')
   pgVars.forEach(varName => {
     const value = process.env[varName]
     console.log(`${varName}: ${value ? '✓ (set)' : '✗ (not set)'}`)
     
-    if (value && (varName.includes('URL') || varName.includes('HOST'))) {
-      const safeValue = value.includes('@') 
-        ? `...@${value.split('@')[1]}`
-        : value
-      console.log(`  Value: ${safeValue}`)
+    if (value && varName !== 'PGPASSWORD') {
+      console.log(`  Value: ${value}`)
     }
   })
 }
 
-checkEnvironment().catch(console.error) 
+checkEnvironment().catch(console.error)
