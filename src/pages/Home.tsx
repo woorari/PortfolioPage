@@ -3,8 +3,6 @@ import { FaGamepad, FaUsers, FaUncharted } from 'react-icons/fa'
 import { GiProcessor, GiTeamUpgrade, GiTechnoHeart } from 'react-icons/gi'
 import { SiUnrealengine } from 'react-icons/si'
 import { MdOutlineGames } from 'react-icons/md'
-import { profileImagePlaceholder } from '../assets/images'
-
 function Home() {
   return (
     <div className="App">
