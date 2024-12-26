@@ -16,17 +16,10 @@ interface Game {
   genre: string
 }
 
-const [games, setGames] = useState<Game[]>([]);
-
-useEffect(() => {
-  fetch('http://localhost:3001/api/games')
-    .then(res => res.json())
-    .then(data => setGames(data))
-    .catch(err => console.error('Error fetching games:', err));
-}, []);
-
-// Placeholder games array for TypeScript
-const dummyGames: Game[] = [
+const games: Game[] = [
+  {
+    id: "g0001",
+    title: "Ragnarok Online",
     image: "/images/games/g0001/cover.png",
     screenshots: [
       "/images/games/g0001/screen1.png",
@@ -55,8 +48,7 @@ const dummyGames: Game[] = [
     description: "Led the global product strategy and development of this unique social MMORPG, combining Sanrio's IP with innovative gameplay mechanics.",
     year: "2006-2009",
     genre: "Social MMORPG"
-  },
-  // ... weitere Spiele
+  }
 ]
 
 const allRoles = Array.from(new Set(games.flatMap(game => game.roles)))
