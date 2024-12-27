@@ -21,7 +21,8 @@
     "noUncheckedSideEffectImports": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["jest", "node"]
   },
   "include": ["vite.config.ts"]
 }
