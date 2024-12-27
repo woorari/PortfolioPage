@@ -29,6 +29,14 @@ describe('Blog API', () => {
   });
 });
 
+describe('CV API', () => {
+  it('GET /api/cv should return CV data', async () => {
+    const res = await request(app).get('/api/cv');
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('experience');
+  });
+});
+
 describe('Contact API', () => {
   it('POST /api/contact should handle form submission', async () => {
     const res = await request(app)
