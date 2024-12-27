@@ -28,6 +28,6 @@ router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}) as RequestHandler);
+}) as RequestHandler<ProjectParams>);
 
 export default router;
