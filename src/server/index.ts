@@ -1,4 +1,3 @@
-
 import express from 'express';
 import cors from 'cors';
 import portfolioRoutes from './routes/portfolio';
@@ -15,8 +14,10 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/cv', cvRoutes);
 app.use('/api/contact', contactRoutes);
 
-const server = app.listen(3001, '0.0.0.0', () => {
-  console.log('Server running on port 3001');
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 export { app, server };

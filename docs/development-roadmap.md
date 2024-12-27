@@ -28,15 +28,15 @@
 
 ### API Development
 
-- [ ] Implement `/api/portfolio` endpoints
+- [x] Implement `/api/portfolio` endpoints
   - GET: Fetch all projects
   - GET: Fetch single project
-- [ ] Implement `/api/blog` endpoints
+- [x] Implement `/api/blog` endpoints
   - GET: Fetch all posts
   - GET: Fetch single post
-- [ ] Implement `/api/cv` endpoints
+- [x] Implement `/api/cv` endpoints
   - GET: Fetch CV data
-- [ ] Implement `/api/contact` endpoint
+- [x] Implement `/api/contact` endpoint
   - POST: Handle contact form submissions
 
 ### Testing & Documentation
