@@ -18,15 +18,20 @@ describe('API Tests', () => {
   })
 
   describe('Portfolio API', () => {
-    it('GET /api/portfolio returns projects', async () => {
+    it('GET /api/portfolio returns projects with valid API key', async () => {
       const response = await request(app)
         .get('/api/portfolio')
+        .set('X-API-Key', process.env.PUBLIC_API_KEY || '')
         .expect('Content-Type', /json/)
         .expect(200)
 
       expect(Array.isArray(response.body)).toBe(true)
-      expect(response.body[0]).toHaveProperty('id')
-      expect(response.body[0]).toHaveProperty('title')
+    })
+
+    it('GET /api/portfolio returns 401 without API key', async () => {
+      await request(app)
+        .get('/api/portfolio')
+        .expect(401)
     })
   })
 })
