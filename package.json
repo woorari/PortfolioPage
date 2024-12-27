@@ -16,7 +16,7 @@
     "migrate": "tsx src/scripts/migrateDb.ts"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
+    "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.62.10",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",

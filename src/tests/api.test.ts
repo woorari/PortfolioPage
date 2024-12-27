@@ -1,6 +1,6 @@
 
-import * as supertest from 'supertest';
-import { app } from '../server';
+import supertest from 'supertest';
+import { app } from '../server/index.js';
 
 const request = supertest;
 
