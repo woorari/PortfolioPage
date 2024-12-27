@@ -3,9 +3,19 @@ import request from 'supertest'
 import { app } from '../server'
 
 describe('API Tests', () => {
+  let server: any
+
+  beforeAll(() => {
+    server = app.listen(3002)
+  })
+
+  afterAll((done) => {
+    server.close(done)
+  })
+
   describe('Portfolio API', () => {
     test('GET /api/portfolio returns projects', async () => {
-      const response = await request(app.listen(3002)).get('/api/portfolio')
+      const response = await request(server).get('/api/portfolio')
       expect(response.status).toBe(200)
       expect(Array.isArray(response.body)).toBe(true)
     })
