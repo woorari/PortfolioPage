@@ -1,8 +1,12 @@
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import pool from '../../lib/db';
 
 const router = Router();
+
+interface ProjectParams {
+  id: string;
+}
 
 router.get('/', async (req, res) => {
   try {
@@ -13,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request<ProjectParams>, res: Response) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
