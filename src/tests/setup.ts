@@ -1,10 +1,10 @@
 
-import { app } from '../server'
+import { server } from '../server'
 
 beforeAll(() => {
   // Any global setup
 })
 
-afterAll(() => {
-  app.close()
+afterAll((done) => {
+  server.close(done)
 })

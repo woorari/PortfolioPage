@@ -15,8 +15,8 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/cv', cvRoutes);
 app.use('/api/contact', contactRoutes);
 
-app.listen(3001, '0.0.0.0', () => {
+const server = app.listen(3001, '0.0.0.0', () => {
   console.log('Server running on port 3001');
 });
 
-export { app };
+export { app, server };
