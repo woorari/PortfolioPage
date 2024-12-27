@@ -29,3 +29,6 @@ async function checkEnvironment() {
 }
 
 checkEnvironment().catch(console.error)
+
+console.log('\nRepl URL:')
+console.log(`https://${process.env.REPL_SLUG}.${process.env.REPLIT_DEV_DOMAIN}`)e.error)
