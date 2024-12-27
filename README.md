@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Portfolio Website
 
-Currently, two official plugins are available:
+A modern portfolio website built with React, TypeScript, and Vite, featuring a blog, CV section, and project showcase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Portfolio showcase with project filtering
+- Blog section with Markdown support
+- Interactive CV with PDF download
+- Contact form integration
+- Responsive design
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- Frontend: React + TypeScript + Vite
+- Styling: Tailwind CSS
+- Backend: Node.js + Express
+- Database: PostgreSQL
+- ORM: Sequelize
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting Started
+
+1. Install dependencies:
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Start the development server:
+```bash
+npm run dev
 ```
+
+The server will run on http://0.0.0.0:3001
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run test` - Run tests
+- `npm run lint` - Run ESLint
+- `npm run format` - Format code with Prettier
+
+## API Endpoints
+
+- `/api/portfolio` - Portfolio projects
+- `/api/blog` - Blog posts
+- `/api/cv` - CV data
+- `/api/contact` - Contact form submissions
+
+## Testing
+
+Run the test suite:
+```bash
+npm run test
+```
+
+## Folder Structure
+
+```
+src/
+  ├── components/    # Reusable components
+  ├── pages/         # Page components
+  ├── server/        # Backend API
+  ├── models/        # Database models
+  ├── utils/         # Utility functions
+  └── tests/         # Test files
+```
+
+## ESLint Configuration
+
+The project uses ESLint with TypeScript support. Configuration can be found in `eslint.config.js`.
