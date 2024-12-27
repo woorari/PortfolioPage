@@ -1,5 +1,5 @@
 
-import { Router, Request, Response, RequestHandler } from 'express';
+import { Router, Request, Response } from 'express';
 import pool from '../../lib/db';
 
 const router = Router();
@@ -8,7 +8,7 @@ interface ProjectParams {
   id: string;
 }
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const result = await pool.query('SELECT * FROM projects ORDER BY created_at DESC');
     res.json(result.rows);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req: Request<ProjectParams>, res: Response) => {
+router.get('/:id', async (req: Request<ProjectParams, any, any, any>, res: Response) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
