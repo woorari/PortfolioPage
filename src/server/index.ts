@@ -1,21 +1,19 @@
 
 import express from 'express';
 import cors from 'cors';
-import pool from '../lib/db';
+import portfolioRoutes from './routes/portfolio';
+import blogRoutes from './routes/blog';
+import cvRoutes from './routes/cv';
+import contactRoutes from './routes/contact';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// GET all games
-app.get('/api/games', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM games');
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+app.use('/api/portfolio', portfolioRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/api/cv', cvRoutes);
+app.use('/api/contact', contactRoutes);
 
 app.listen(3001, '0.0.0.0', () => {
   console.log('Server running on port 3001');
