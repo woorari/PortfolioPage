@@ -1,0 +1,62 @@
+
+{
+  "info": {
+    "name": "Portfolio API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Portfolio",
+      "item": [
+        {
+          "name": "Get All Projects",
+          "request": {
+            "method": "GET",
+            "url": "http://0.0.0.0:3001/api/portfolio"
+          }
+        },
+        {
+          "name": "Get Project by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://0.0.0.0:3001/api/portfolio/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "item": [
+        {
+          "name": "Get All Blog Posts",
+          "request": {
+            "method": "GET",
+            "url": "http://0.0.0.0:3001/api/blog"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "Submit Contact Form",
+          "request": {
+            "method": "POST",
+            "url": "http://0.0.0.0:3001/api/contact",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"message\": \"Hello, I would like to connect!\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
