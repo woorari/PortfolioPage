@@ -11,7 +11,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
     "preview": "vite preview",
     "test:db": "tsx src/scripts/testDb.ts",
-    "test:env": "tsx src/scripts/testEnv.ts"
+    "test:env": "tsx src/scripts/testEnv.ts",
+    "migrate": "tsx src/scripts/migrateDb.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
