@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
@@ -15,20 +15,38 @@ const limiter = rateLimit({
   max: 100
 })
 
-app.use(helmet())  // Sicherheits-Header
+// Middleware-Reihenfolge ist wichtig!
+app.use(helmet({
+  frameguard: { action: 'deny' },
+  xssFilter: true,
+  noSniff: true,
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'none'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'"]
+    }
+  }
+}))
+
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key']
 }))
-app.use(express.json({ limit: '10kb' }))  // Body size limit
+app.use(express.json({ limit: '10kb' }))
 app.use(limiter)
 
-// Public routes mit basic auth
+// API Routes
 app.use('/api/portfolio', publicAuth, portfolioRoutes)
 app.use('/api/blog', publicAuth, blogRoutes)
-
-// Protected routes mit JWT auth
 app.use('/api/contact', auth, contactRoutes)
+
+// Error Handler
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  console.error(err.stack)
+  res.sendStatus(500)
+})
 
 export { app } 

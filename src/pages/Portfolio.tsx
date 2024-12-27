@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { FaGamepad, FaFilter, FaChevronDown, FaCode, FaUserTie, FaPencilAlt, FaCogs, FaUsers, FaDragon, FaHeart, FaFistRaised, FaTags, FaUsersCog } from 'react-icons/fa'
+import { IconType } from 'react-icons'
+import { FaGamepad, FaChevronDown, FaCode, FaUserTie, FaPencilAlt, FaCogs, FaUsers, FaDragon, FaHeart, FaFistRaised, FaTags, FaUsersCog } from 'react-icons/fa'
 import { GiDungeonGate, GiCastle } from 'react-icons/gi'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -9,7 +10,7 @@ interface Game {
   image: string;       // /images/games/g0001/cover.jpg
   screenshots: string[]; // ['/images/games/g0001/screen1.jpg', ...]
   company: string
-  companyIcon: React.ComponentType
+  companyIcon: IconType
   roles: string[]
   description: string
   year: string
@@ -70,16 +71,8 @@ function calculateStats(games: Game[]): GameStats {
   }
 }
 
-// Neue Interface für Filter-Optionen
-interface FilterOption {
-  value: string
-  label: string
-  icon: React.ComponentType
-  count: number
-}
-
 // Role Icons Mapping
-const roleIcons: Record<string, React.ComponentType> = {
+const roleIcons: Record<string, IconType> = {
   "Technical Product Manager": FaCogs,
   "Game Designer": FaPencilAlt,
   "System Designer": FaCode,
@@ -88,7 +81,7 @@ const roleIcons: Record<string, React.ComponentType> = {
 }
 
 // Genre Icons Mapping
-const genreIcons: Record<string, React.ComponentType> = {
+const genreIcons: Record<string, IconType> = {
   "MMORPG": FaDragon,
   "Social MMORPG": FaHeart,
   "Action RPG": FaFistRaised,
@@ -103,7 +96,7 @@ const FilterSection = ({
   isActive
 }: { 
   label: string
-  icon: React.ComponentType
+  icon: IconType
   selected: string
   onToggle: () => void
   isActive: boolean
@@ -130,11 +123,10 @@ const FilterSection = ({
 
       <div className="relative flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Icon className={`text-xl ${isActive || selected ? 'text-primary' : 'text-primary/50'} 
+          <Icon aria-hidden="true" className={`text-xl ${isActive || selected ? 'text-primary' : 'text-primary/50'} 
                          transition-colors duration-300 group-hover:text-primary`} />
           <span className="text-main/90 font-medium">{label}</span>
         </div>
-        
         {selected ? (
           <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary ml-3">
             1 Selected
@@ -211,7 +203,7 @@ export default function Portfolio() {
         <div className="flex flex-wrap gap-4 justify-center">
           <FilterSection
             label="Roles"
-            icon={FaUsersCog}
+            icon={FaUsersCog as IconType}
             selected={selectedRole}
             onToggle={() => {
               if (activeFilter === 'roles') {

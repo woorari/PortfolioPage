@@ -73,7 +73,6 @@
   - Markdown renderer
 - [ ] CV Page
   - Interactive timeline
-  - PDF generation
 - [ ] Contact Section
   - Contact form
   - Form validation
