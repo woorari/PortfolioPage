@@ -21,4 +21,4 @@ router.get('/', async (req, res) => {
   res.json(cvData);
 });
 
-export default router;r;
+export default router;

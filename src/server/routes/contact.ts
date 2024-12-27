@@ -1,10 +1,16 @@
 
-import { Router } from 'express';
+import { Router, Request, Response, RequestHandler } from 'express';
 import pool from '../../lib/db';
+
+interface ContactBody {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const router = Router();
 
-router.post('/', async (req, res) => {
+router.post('/', (async (req: Request<{}, {}, ContactBody>, res: Response) => {
   try {
     const { name, email, message } = req.body;
     
@@ -21,6 +27,6 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}) as RequestHandler);
 
 export default router;

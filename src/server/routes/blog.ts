@@ -1,19 +1,23 @@
 
-import { Router } from 'express';
+import { Router, Request, Response, RequestHandler } from 'express';
 import pool from '../../lib/db';
+
+interface BlogParams {
+  slug: string;
+}
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', (async (req: Request, res: Response) => {
   try {
     const result = await pool.query('SELECT * FROM blog_posts WHERE published = true ORDER BY published_at DESC');
     res.json(result.rows);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}) as RequestHandler);
 
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', (async (req: Request<BlogParams>, res: Response) => {
   try {
     const { slug } = req.params;
     const result = await pool.query('SELECT * FROM blog_posts WHERE slug = $1 AND published = true', [slug]);
@@ -24,6 +28,6 @@ router.get('/:slug', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}) as RequestHandler<BlogParams>);
 
 export default router;
