@@ -5,7 +5,7 @@ import { app } from '../server'
 describe('API Tests', () => {
   describe('Portfolio API', () => {
     test('GET /api/portfolio returns projects', async () => {
-      const response = await request(app).get('/api/portfolio')
+      const response = await request(app.listen(3002)).get('/api/portfolio')
       expect(response.status).toBe(200)
       expect(Array.isArray(response.body)).toBe(true)
     })

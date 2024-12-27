@@ -36,7 +36,8 @@ describe('Portfolio API', () => {
         .expect('Content-Type', /json/)
         .expect(200)
 
-      expect(response.body).toHaveProperty('message')
+      expect(response.body).toHaveProperty('title')
+      expect(response.body).toHaveProperty('description')
     })
 
     it('should return 404 for invalid id', async () => {
