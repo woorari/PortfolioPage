@@ -1,8 +1,6 @@
 
-import * as supertest from 'supertest';
+import request from 'supertest';
 import { app } from '../server';
-
-const request = supertest.default;
 
 describe('Portfolio API', () => {
   it('GET /api/portfolio should return all projects', async () => {
