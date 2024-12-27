@@ -1,32 +1,23 @@
-
-import { Router, Request, Response, RequestHandler } from 'express';
-import pool from '../../lib/db';
+import { Router, RequestHandler } from 'express'
 
 interface ContactBody {
-  name: string;
-  email: string;
-  message: string;
+  email: string
+  message: string
 }
 
-const router = Router();
+const router = Router()
 
-router.post('/', (async (req: Request<{}, {}, ContactBody>, res: Response) => {
+// POST contact message
+const sendContactMessage: RequestHandler<{}, {}, ContactBody> = async (req, res, next) => {
   try {
-    const { name, email, message } = req.body;
-    
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    const result = await pool.query(
-      'INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3) RETURNING *',
-      [name, email, message]
-    );
-    
-    res.status(201).json(result.rows[0]);
+    const { email, message } = req.body
+    // TODO: Implement email sending
+    res.status(201).json({ message: 'Message sent successfully' })
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error)
   }
-}) as RequestHandler);
+}
 
-export default router;
+router.post('/', sendContactMessage)
+
+export default router

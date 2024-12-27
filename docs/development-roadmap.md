@@ -36,7 +36,6 @@
   - GET: Fetch single post
 - [ ] Implement `/api/cv` endpoints
   - GET: Fetch CV data
-  - GET: Generate PDF
 - [ ] Implement `/api/contact` endpoint
   - POST: Handle contact form submissions
 

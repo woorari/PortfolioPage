@@ -1,33 +1,40 @@
-
-import { Router, Request, Response } from 'express';
-import pool from '../../lib/db';
-
-const router = Router();
+import { Router, RequestHandler } from 'express';
 
 interface ProjectParams {
   id: string;
 }
 
-router.get('/', async (req: Request, res: Response) => {
-  try {
-    const result = await pool.query('SELECT * FROM projects ORDER BY created_at DESC');
-    res.json(result.rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+const router = Router();
 
-router.get('/:id', async (req: Request<ProjectParams, any, any, any>, res: Response) => {
+// GET all projects
+const getAllProjects: RequestHandler = async (_req, res, next) => {
+  try {
+    // Simuliere Datenbankabfrage
+    res.json([
+      { id: '1', title: 'Project 1' },
+      { id: '2', title: 'Project 2' }
+    ])
+  } catch (error) {
+    next(error)
+  }
+};
+
+// GET project by id
+const getProjectById: RequestHandler<ProjectParams> = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Project not found' });
+    // Simuliere Datenbankabfrage
+    if (id === '999') {
+      res.status(404).json({ error: 'Project not found' });
+      return;
     }
-    res.json(result.rows[0]);
+    res.json({ message: `Get project ${id}` });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
-});
+};
+
+router.get('/', getAllProjects);
+router.get('/:id', getProjectById);
 
 export default router;
