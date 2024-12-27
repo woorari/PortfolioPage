@@ -21,7 +21,6 @@ router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
-}) as RequestHandler);
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Project not found' });
     }
@@ -29,6 +28,6 @@ router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}) as RequestHandler);
 
 export default router;
