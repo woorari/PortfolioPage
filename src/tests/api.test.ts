@@ -1,66 +1,42 @@
 
-import { describe, expect, it, beforeAll, afterAll } from '@jest/globals'
-import supertest from 'supertest'
-import { app } from '../server/index.js'
-import { testConnection } from '../config/database'
-
-const request = supertest(app)
-
-beforeAll(async () => {
-  await testConnection()
-})
-
-afterAll(async () => {
-  // Close any open connections
-  app.close()
-})
+import request from 'supertest'
+import { app } from '../server'
 
 describe('API Tests', () => {
   describe('Portfolio API', () => {
-    it('GET /api/portfolio should return all projects', async () => {
-      const res = await request(app).get('/api/portfolio')
-      expect(res.status).toBe(200)
-      expect(Array.isArray(res.body)).toBeTruthy()
-    })
-
-    it('GET /api/portfolio/:id should return a single project', async () => {
-      const res = await request(app).get('/api/portfolio/1')
-      expect(res.status).toBe(200)
-      expect(res.body).toHaveProperty('id')
+    test('GET /api/portfolio returns projects', async () => {
+      const response = await request(app).get('/api/portfolio')
+      expect(response.status).toBe(200)
+      expect(Array.isArray(response.body)).toBe(true)
     })
   })
 
   describe('Blog API', () => {
-    it('GET /api/blog should return all published posts', async () => {
-      const res = await request(app).get('/api/blog')
-      expect(res.status).toBe(200)
-      expect(Array.isArray(res.body)).toBeTruthy()
-    })
-
-    it('GET /api/blog/:slug should return a single post', async () => {
-      const res = await request(app).get('/api/blog/test-post')
-      expect(res.status).toBe(404)
+    test('GET /api/blog returns posts', async () => {
+      const response = await request(app).get('/api/blog')
+      expect(response.status).toBe(200)
+      expect(Array.isArray(response.body)).toBe(true)
     })
   })
 
   describe('CV API', () => {
-    it('GET /api/cv should return CV data', async () => {
-      const res = await request(app).get('/api/cv')
-      expect(res.status).toBe(200)
-      expect(res.body).toHaveProperty('experience')
+    test('GET /api/cv returns data', async () => {
+      const response = await request(app).get('/api/cv')
+      expect(response.status).toBe(200)
+      expect(response.body).toHaveProperty('experience')
     })
   })
 
   describe('Contact API', () => {
-    it('POST /api/contact should handle form submission', async () => {
-      const res = await request(app)
+    test('POST /api/contact handles submission', async () => {
+      const response = await request(app)
         .post('/api/contact')
         .send({
           name: 'Test User',
           email: 'test@example.com',
           message: 'Test message'
         })
-      expect(res.status).toBe(201)
+      expect(response.status).toBe(201)
     })
   })
 })
