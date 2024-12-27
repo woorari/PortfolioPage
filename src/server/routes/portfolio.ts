@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
+router.get('/:id', async (req: Request<ProjectParams>, res: Response) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
@@ -28,6 +28,6 @@ router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}) as RequestHandler<ProjectParams>);
+});
 
 export default router;
