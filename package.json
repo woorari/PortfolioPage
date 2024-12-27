@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "test:db": "tsx src/scripts/testDb.ts",
     "test:env": "tsx src/scripts/testEnv.ts",
-    "migrate": "tsx src/scripts/migrateDb.ts"
+    "migrate": "tsx src/scripts/migrateDb.ts",
+    "seed": "tsx src/scripts/seedDb.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
