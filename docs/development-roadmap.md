@@ -21,10 +21,10 @@
 
 ### Database Setup
 
-- [ ] Configure PostgreSQL
-- [ ] Design database schema
-- [ ] Set up Sequelize ORM
-- [ ] Create database migrations
+- [x] Configure PostgreSQL
+- [x] Design database schema
+- [x] Set up Sequelize ORM
+- [x] Create database migrations
 
 ### API Development
 
