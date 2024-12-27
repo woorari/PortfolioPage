@@ -17,10 +17,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req: Request<ProjectParams, any, any>, res: Response) => {
+router.get('/:id', (async (req: Request<ProjectParams>, res: Response) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
+}) as RequestHandler);
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Project not found' });
     }
