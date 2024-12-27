@@ -41,9 +41,9 @@
 
 ### Testing & Documentation
 
-- [ ] Write API tests using Jest
-- [ ] Create API documentation
-- [ ] Set up Postman collection
+- [x] Write API tests using Jest
+- [x] Create API documentation
+- [x] Set up Postman collection
 
 ## Phase 3: Frontend Development (Week 4-6)
 
