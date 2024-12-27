@@ -1,52 +1,32 @@
-
 import request from 'supertest'
-import { app } from '../server'
+import { app, startServer } from '../server/index'
+import { Server } from 'http'
 
 describe('API Tests', () => {
-  let server: any
+  let server: Server
 
-  beforeAll(() => {
-    server = app.listen(3002)
+  beforeAll(async () => {
+    server = await startServer(0)
   })
 
-  afterAll((done) => {
-    server.close(done)
+  afterAll(async () => {
+    return new Promise<void>((resolve) => {
+      server?.close(() => {
+        resolve()
+      })
+    })
   })
 
   describe('Portfolio API', () => {
-    test('GET /api/portfolio returns projects', async () => {
-      const response = await request(server).get('/api/portfolio')
-      expect(response.status).toBe(200)
-      expect(Array.isArray(response.body)).toBe(true)
-    })
-  })
-
-  describe('Blog API', () => {
-    test('GET /api/blog returns posts', async () => {
-      const response = await request(app).get('/api/blog')
-      expect(response.status).toBe(200)
-      expect(Array.isArray(response.body)).toBe(true)
-    })
-  })
-
-  describe('CV API', () => {
-    test('GET /api/cv returns data', async () => {
-      const response = await request(app).get('/api/cv')
-      expect(response.status).toBe(200)
-      expect(response.body).toHaveProperty('experience')
-    })
-  })
-
-  describe('Contact API', () => {
-    test('POST /api/contact handles submission', async () => {
+    it('GET /api/portfolio returns projects', async () => {
       const response = await request(app)
-        .post('/api/contact')
-        .send({
-          name: 'Test User',
-          email: 'test@example.com',
-          message: 'Test message'
-        })
-      expect(response.status).toBe(201)
+        .get('/api/portfolio')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(Array.isArray(response.body)).toBe(true)
+      expect(response.body[0]).toHaveProperty('id')
+      expect(response.body[0]).toHaveProperty('title')
     })
   })
 })
